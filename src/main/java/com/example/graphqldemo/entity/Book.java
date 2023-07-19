@@ -1,22 +1,45 @@
 package com.example.graphqldemo.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-@Table("book")
+@Entity
+@Table(name = "book")
 public class Book {
-	
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String title;
-	
+
 	private Integer pages;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Author author;
 	
-	@Column("author_id")
-	private Long authorId;
-	
+	public Book() {
+		
+	}
+
+//	public Book(Long id, String title, Integer pages) {
+//		this.id = id;
+//		this.title = title;
+//		this.pages = pages;
+//	}
+//	
+//	public Book(Long id, String title, Integer pages, Author author) {
+//		this.id = id;
+//		this.title = title;
+//		this.pages = pages;
+//		this.author = author;
+//	}
+
 	public Long getId() {
 		return id;
 	}
@@ -41,11 +64,12 @@ public class Book {
 		this.pages = pages;
 	}
 
-	public Long getAuthorId() {
-		return authorId;
+	public Author getAuthor() {
+		return author;
 	}
 
-	public void setAuthorId(Long authorId) {
-		this.authorId = authorId;
+	public void setAuthor(Author author) {
+		this.author = author;
 	}
+
 }

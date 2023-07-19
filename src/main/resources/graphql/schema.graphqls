@@ -2,7 +2,7 @@ type Book {
   	id: ID!
   	title: String
   	pages: Int
-  	authorId: ID
+  	author: Author
 }
 
 type Author {

@@ -1,6 +1,7 @@
 package com.example.graphqldemo.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +21,10 @@ public class AuthorService {
 	
 	public boolean existsById(long id) {
 		return authorRepository.existsById(id);
+	}
+	
+	public Optional<Author> findById(long id) {
+		return authorRepository.findById(id);
 	}
 	
 	public List<Author> allAuthors() {
